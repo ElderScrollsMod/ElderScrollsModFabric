@@ -1,0 +1,41 @@
+{
+  "gold_down_00": {
+    "category": "player",
+    "subtitle": "subtitles.gold_down_00",
+    "sounds": [
+      {
+        "name": "elderscrolls:gold_down_01",
+        "stream": false
+      }
+    ]
+  },
+  "gold_down_01": {
+    "category": "master",
+    "subtitle": "subtitles.gold_down_01",
+    "sounds": [
+      {
+        "name": "elderscrolls:gold_down_02",
+        "stream": false
+      }
+    ]
+  },
+  "tes4title": {
+    "category": "music",
+    "subtitle": "subtitles.tes4title",
+    "sounds": [
+      {
+        "name": "elderscrolls:tes4title",
+        "stream": true
+      }
+    ]
+  },
+  "breton_hit": {
+    "category": "hostile",
+    "sounds": [
+      {
+        "name": "elderscrolls:generic_hit_00023796_1",
+        "stream": false
+      }
+    ]
+  }
+}
