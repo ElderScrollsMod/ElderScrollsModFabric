@@ -22,7 +22,7 @@ public class ElderScrolls implements ModInitializer {
 
   public static final Block EXAMPLE_BLOCK = new Block(FabricBlockSettings.of(Material.METAL).strength(4.0f));
   public static final FoxgloveBlock FOXGLOVE_BLOCK = new FoxgloveBlock();
-  public static final AleItem ALE_ITEM = new AleItem(new FabricItemSettings());
+  public static final AleItem ALE_ITEM = new AleItem(new FabricItemSettings().maxCount(16));
   public static final Item FOXGLOVE_NECTAR_ITEM = new Item(
     new FabricItemSettings()
     .group(ItemGroup.BREWING)
