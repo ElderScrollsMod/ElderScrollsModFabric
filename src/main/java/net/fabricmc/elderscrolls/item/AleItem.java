@@ -9,6 +9,8 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.item.ItemUsage;
 import net.minecraft.world.World;
 import net.minecraft.entity.LivingEntity;
+import net.minecraft.entity.effect.StatusEffectInstance;
+import net.minecraft.entity.effect.StatusEffects;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.util.Hand;
 
@@ -36,16 +38,22 @@ public class AleItem extends Item {
     return SoundEvents.ENTITY_GENERIC_DRINK;
   }
 
-  // TODO: Implement actual buzz effect :DDDDD
-
   @Override
   public ItemStack finishUsing(ItemStack stack, World world, LivingEntity user) {
     PlayerEntity playerEntity = user instanceof PlayerEntity ? (PlayerEntity)user : null;
 
     user.animateDamage();
 
-    if (!world.isClient) {
+    if (playerEntity != null) {
+      playerEntity.playSound(SoundEvents.BLOCK_GLASS_BREAK, 1.0F, 1.0F);
+    }
+
+    if (!world.isClient && playerEntity != null) {
       if (!playerEntity.abilities.creativeMode) {
+        StatusEffectInstance effect = new StatusEffectInstance(StatusEffects.NAUSEA, 120, 1);
+
+        user.addStatusEffect(effect);
+
         stack.decrement(1);
       }
     }
