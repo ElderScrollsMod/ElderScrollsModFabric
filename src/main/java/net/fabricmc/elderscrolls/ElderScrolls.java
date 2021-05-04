@@ -6,7 +6,10 @@ import net.minecraft.util.Identifier;
 import net.minecraft.block.Block;
 import net.minecraft.block.Material;
 import net.minecraft.client.render.RenderLayer;
+import net.minecraft.entity.effect.StatusEffectInstance;
+import net.minecraft.entity.effect.StatusEffects;
 import net.minecraft.item.BlockItem;
+import net.minecraft.item.FoodComponent;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemGroup;
 import net.fabricmc.fabric.api.blockrenderlayer.v1.BlockRenderLayerMap;
@@ -20,6 +23,16 @@ import net.fabricmc.elderscrolls.item.*;
 
 public class ElderScrolls implements ModInitializer {
 
+  public static final FoodComponent MOON_SUGAR_FOOD;
+
+  static {
+    MOON_SUGAR_FOOD = (new FoodComponent.Builder())
+    .hunger(0).saturationModifier(0.0F)
+    .statusEffect(new StatusEffectInstance(StatusEffects.SPEED, 200, 1), 1.0F)
+    .statusEffect(new StatusEffectInstance(StatusEffects.NAUSEA, 200, 1), 1.0F)
+    .alwaysEdible().build();
+  }
+
   public static final Block EXAMPLE_BLOCK = new Block(FabricBlockSettings.of(Material.METAL).strength(4.0f));
   public static final FoxgloveBlock FOXGLOVE_BLOCK = new FoxgloveBlock();
   public static final AleItem ALE_ITEM = new AleItem(new FabricItemSettings().maxCount(16));
@@ -28,6 +41,8 @@ public class ElderScrolls implements ModInitializer {
     new FabricItemSettings()
     .group(ItemGroup.BREWING)
   );
+  public static final Item MOONSUGAR_ITEM = new Item(new FabricItemSettings().group(ItemGroup.FOOD).food(MOON_SUGAR_FOOD));
+
 
   public static final ItemGroup OTHER_GROUP = FabricItemGroupBuilder.create(
 		new Identifier("elderscrolls", "all"))
@@ -37,6 +52,8 @@ public class ElderScrolls implements ModInitializer {
       stacks.add(new ItemStack(FOXGLOVE_BLOCK));
       stacks.add(new ItemStack(FOXGLOVE_NECTAR_ITEM));
       stacks.add(new ItemStack(ALE_ITEM));
+      stacks.add(new ItemStack(NORDMEAD_ITEM));
+      stacks.add(new ItemStack(MOONSUGAR_ITEM));
     })
 		.build();
 
@@ -59,6 +76,8 @@ public class ElderScrolls implements ModInitializer {
 
     Registry.register(Registry.ITEM, new Identifier("elderscrolls", "ale"), ALE_ITEM);
     Registry.register(Registry.ITEM, new Identifier("elderscrolls", "nord_mead"), NORDMEAD_ITEM);
+
+    Registry.register(Registry.ITEM, new Identifier("elderscrolls", "moon_sugar"), MOONSUGAR_ITEM);
   }
   
 
