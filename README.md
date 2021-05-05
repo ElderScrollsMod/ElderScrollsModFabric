@@ -1,4 +1,9 @@
-# Fabric Example Mod
+# The Elder Scroll Mod
+
+## Description
+
+It's a mod, it adds The Elder Scrolls stuff. To Minecraft.
+Cheers.
 
 ## Setup
 
