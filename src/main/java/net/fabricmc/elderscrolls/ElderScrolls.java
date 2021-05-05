@@ -24,6 +24,7 @@ import net.fabricmc.elderscrolls.item.*;
 public class ElderScrolls implements ModInitializer {
 
   public static final FoodComponent MOON_SUGAR_FOOD;
+  public static final FoodComponent SKOOMA_FOOD;
 
   static {
     MOON_SUGAR_FOOD = (new FoodComponent.Builder())
@@ -31,6 +32,11 @@ public class ElderScrolls implements ModInitializer {
     .statusEffect(new StatusEffectInstance(StatusEffects.SPEED, 200, 1), 1.0F)
     .statusEffect(new StatusEffectInstance(StatusEffects.NAUSEA, 200, 1), 1.0F)
     .alwaysEdible().build();
+    SKOOMA_FOOD = (new FoodComponent.Builder())
+    .hunger(0).saturationModifier(0.0F)
+    .statusEffect(new StatusEffectInstance(StatusEffects.SPEED, 200, 1), 1.0F)
+    .statusEffect(new StatusEffectInstance(StatusEffects.NAUSEA, 200, 1), 1.0F)
+    .alwaysEdible().snack().build();
   }
 
   public static final Block EXAMPLE_BLOCK = new Block(FabricBlockSettings.of(Material.METAL).strength(4.0f));
@@ -42,6 +48,7 @@ public class ElderScrolls implements ModInitializer {
     .group(ItemGroup.BREWING)
   );
   public static final Item MOONSUGAR_ITEM = new Item(new FabricItemSettings().group(ItemGroup.FOOD).food(MOON_SUGAR_FOOD));
+  public static final Item SKOOMA_ITEM = new Item(new FabricItemSettings().group(ItemGroup.FOOD).food(SKOOMA_FOOD));
 
 
   public static final ItemGroup OTHER_GROUP = FabricItemGroupBuilder.create(
@@ -54,6 +61,7 @@ public class ElderScrolls implements ModInitializer {
       stacks.add(new ItemStack(ALE_ITEM));
       stacks.add(new ItemStack(NORDMEAD_ITEM));
       stacks.add(new ItemStack(MOONSUGAR_ITEM));
+      stacks.add(new ItemStack(SKOOMA_ITEM));
     })
 		.build();
 
@@ -78,6 +86,7 @@ public class ElderScrolls implements ModInitializer {
     Registry.register(Registry.ITEM, new Identifier("elderscrolls", "nord_mead"), NORDMEAD_ITEM);
 
     Registry.register(Registry.ITEM, new Identifier("elderscrolls", "moon_sugar"), MOONSUGAR_ITEM);
+    Registry.register(Registry.ITEM, new Identifier("elderscrolls", "skooma"), SKOOMA_ITEM);
   }
   
 
