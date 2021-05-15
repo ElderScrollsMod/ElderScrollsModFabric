@@ -1,5 +1,9 @@
 package net.fabricmc.elderscrolls;
 
+import dev.emi.trinkets.api.SlotGroups;
+import dev.emi.trinkets.api.Slots;
+import dev.emi.trinkets.api.TrinketSlots;
+
 import net.fabricmc.api.ModInitializer;
 import net.minecraft.util.registry.Registry;
 import net.minecraft.util.Identifier;
@@ -63,7 +67,18 @@ public class ElderScrolls implements ModInitializer {
       stacks.add(new ItemStack(MOONSUGAR_ITEM));
       stacks.add(new ItemStack(SKOOMA_ITEM));
     })
-		.build();
+    .build();
+    
+  void setupSlots() {
+    // Left hand
+    TrinketSlots.addSlot(SlotGroups.OFFHAND, Slots.RING, new Identifier("trinkets", "textures/item/empty_trinket_slot_ring.png"));
+    // Right hand
+    TrinketSlots.addSlot(SlotGroups.HAND, Slots.RING, new Identifier("trinkets", "textures/item/empty_trinket_slot_ring.png"));
+    TrinketSlots.addSlot(SlotGroups.HAND, Slots.RING, new Identifier("trinkets", "textures/item/empty_trinket_slot_ring.png"));
+    // chest
+    TrinketSlots.addSlot(SlotGroups.CHEST, Slots.NECKLACE, new Identifier("trinkets", "textures/item/empty_trinket_slot_necklace.png"));
+    TrinketSlots.addSlot(SlotGroups.CHEST, Slots.GLOVES, new Identifier("trinkets", "textures/item/empty_trinket_slot_gloves.png"));
+  }
 
 	@Override
 	public void onInitialize() {
@@ -87,6 +102,8 @@ public class ElderScrolls implements ModInitializer {
 
     Registry.register(Registry.ITEM, new Identifier("elderscrolls", "moon_sugar"), MOONSUGAR_ITEM);
     Registry.register(Registry.ITEM, new Identifier("elderscrolls", "skooma"), SKOOMA_ITEM);
+
+    setupSlots();
   }
   
 
